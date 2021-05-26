@@ -5,8 +5,6 @@ const templatesPath = `./src/templates`
 const excludedNodeTypes = [`mediaItem`]
 
 exports.createPages = async gatsbyUtilities => {
-  // const plugins = await getPlugins()
-
   const contentNodes = await getContentNodes(gatsbyUtilities)
 
   if (contentNodes.length >= 1) {
