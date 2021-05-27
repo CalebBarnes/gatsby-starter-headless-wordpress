@@ -3,11 +3,19 @@ async function getContentNodes({ graphql, reporter }) {
     query WpContentNodes {
       allWpContentNode {
         nodes {
+          __typename
           id
           uri
           nodeType
+          isArchive # added resolver for this to ContentNode - true/false
+          archiveContentType # added resolver for this to ContentNode - null or the post type "post", "product", "movie", etc
           template {
             templateName
+          }
+          contentType {
+            node {
+              graphqlSingleName
+            }
           }
         }
       }

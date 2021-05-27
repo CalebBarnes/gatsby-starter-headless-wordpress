@@ -3,7 +3,7 @@ require("dotenv").config({
 })
 
 module.exports = {
-  flags: { FAST_DEV: true, DEV_SSR: true },
+  // flags: { FAST_DEV: true, DEV_SSR: true },
   plugins: [
     `gatsby-plugin-layout`,
     {

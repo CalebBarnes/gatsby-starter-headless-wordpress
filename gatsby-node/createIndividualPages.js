@@ -1,8 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 
-// const { dd } = require("dumper.js")
-
+const { toCamel } = require(`./utils/toCamel`)
 const { getContentSeo } = require(`./getContentSeo`)
 
 const createIndividualPages = async ({
@@ -13,17 +12,33 @@ const createIndividualPages = async ({
 }) =>
   Promise.all(
     contentNodes.map(
-      async ({ id, uri, nodeType, template: { templateName } }) => {
+      async ({
+        id,
+        uri,
+        nodeType,
+        template: { templateName },
+        isArchive = false,
+        archiveContentType = null,
+        contentType: {
+          node: { graphqlSingleName },
+        },
+      }) => {
         if (excludedNodeTypes.includes(nodeType)) {
           return
         }
 
-        const contentTypeTemplatePath = `${templatesPath}/${nodeType}/${templateName}.js`
+        const contentTypeTemplatePath = !!isArchive
+          ? `${templatesPath}/archive/${toCamel(archiveContentType)}.js`
+          : `${templatesPath}/${toCamel(graphqlSingleName)}/${toCamel(
+              templateName
+            )}.js`
 
         const templateExists = fs.existsSync(contentTypeTemplatePath)
 
         if (!templateExists) {
-          reporter.warn(`Template not found: ${contentTypeTemplatePath}`)
+          reporter.warn(
+            `Template "${templateName}" not found at "${contentTypeTemplatePath}" for post type "${nodeType}" on page "${uri}"`
+          )
           return
         }
 
