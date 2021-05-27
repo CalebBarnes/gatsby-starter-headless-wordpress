@@ -3,8 +3,9 @@ const fs = require("fs")
 
 const { toCamel } = require(`./utils/toCamel`)
 const { getContentSeo } = require(`./getContentSeo`)
+const { createArchivePages } = require(`./createArchivePages`)
 
-const createIndividualPages = async ({
+const createAllPages = async ({
   contentNodes,
   templatesPath,
   excludedNodeTypes,
@@ -44,16 +45,30 @@ const createIndividualPages = async ({
 
         const seo = await getContentSeo({ id, nodeType, graphql })
 
-        return actions.createPage({
-          path: uri,
-          component: path.resolve(contentTypeTemplatePath),
-          context: {
+        if (isArchive) {
+          await createArchivePages({
+            archiveContentType,
             id,
-            seo,
-          },
-        })
+            component: path.resolve(contentTypeTemplatePath),
+            uri,
+            contentNodes,
+            graphql,
+            actions,
+            reporter,
+          })
+          return
+        } else {
+          return actions.createPage({
+            path: uri,
+            component: path.resolve(contentTypeTemplatePath),
+            context: {
+              id,
+              seo,
+            },
+          })
+        }
       }
     )
   )
 
-exports.createIndividualPages = createIndividualPages
+exports.createAllPages = createAllPages

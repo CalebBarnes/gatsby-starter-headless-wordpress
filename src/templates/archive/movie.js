@@ -2,13 +2,13 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
 
-const PostArchive = props => {
+const MoviesArchive = props => {
   const {
     data: {
       page: { title },
-      posts: { nodes: posts },
+      movies: { nodes: movies },
     },
-    pageContext: { nextPagePath, previousPagePath },
+    pageContext: { nextPagePath, previousPagePath, postsPerPage },
   } = props
 
   // console.log({ props })
@@ -18,12 +18,12 @@ const PostArchive = props => {
       {title && <h1>{title}</h1>}
 
       <ol style={{ listStyle: `none` }}>
-        {posts &&
-          posts.map(post => {
-            const title = post.title
+        {movies &&
+          movies.map(movie => {
+            const title = movie.title
 
             return (
-              <li key={post.uri}>
+              <li key={movie.uri}>
                 <article
                   className="post-list-item"
                   itemScope
@@ -31,15 +31,12 @@ const PostArchive = props => {
                 >
                   <header>
                     <h2>
-                      <Link to={post.uri} itemProp="url">
+                      <Link to={movie.uri} itemProp="url">
                         <span itemProp="headline">{parse(title)}</span>
                       </Link>
                     </h2>
-                    <small>{post.date}</small>
+                    <small>{movie.date}</small>
                   </header>
-                  <section itemProp="description">
-                    {parse(post.excerpt)}
-                  </section>
                 </article>
               </li>
             )
@@ -52,31 +49,36 @@ const PostArchive = props => {
           <br />
         </>
       )}
-      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+
+      {nextPagePath && movies.length === postsPerPage && (
+        <Link to={nextPagePath}>Next page</Link>
+      )}
     </div>
   )
 }
 
-export default PostArchive
+export default MoviesArchive
 
 export const pageQuery = graphql`
-  query WordPressPostArchive($id: String!, $offset: Int!, $postsPerPage: Int!) {
+  query WordPressMoviesArchive(
+    $id: String!
+    $offset: Int!
+    $postsPerPage: Int!
+  ) {
     page: wpPage(id: { eq: $id }) {
       title
       content
     }
 
-    posts: allWpPost(
+    movies: allWpMovie(
       sort: { fields: [date], order: DESC }
       limit: $postsPerPage
       skip: $offset
     ) {
       nodes {
-        excerpt
         uri
         date(formatString: "MMMM DD, YYYY")
         title
-        excerpt
       }
     }
   }

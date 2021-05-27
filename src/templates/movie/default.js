@@ -2,10 +2,10 @@ import React from "react"
 import { graphql } from "gatsby"
 import parse from "html-react-parser"
 
-const Post = props => {
+const Movie = props => {
   const {
     data: {
-      post: { title, content },
+      movie: { title, content },
     },
   } = props
 
@@ -20,11 +20,11 @@ const Post = props => {
   )
 }
 
-export default Post
+export default Movie
 
-export const postQuery = graphql`
-  query Post($id: String!) {
-    post: wpPost(id: { eq: $id }) {
+export const pageQuery = graphql`
+  query Movie($id: String!) {
+    movie: wpMovie(id: { eq: $id }) {
       title
       content
     }
