@@ -41,7 +41,7 @@ const createContentPages = async ({
 
         if (!templateExists) {
           reporter.warn(
-            `Template "${templateName}" not found at "${contentTypeTemplatePath}" for post type "${nodeType}" on page "${uri}"`
+            `Template "${templateName}" not found at "${contentTypeTemplatePath}" for node type "${nodeType}" on uri "${uri}"`
           )
           return
         }
