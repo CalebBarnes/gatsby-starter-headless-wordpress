@@ -28,6 +28,9 @@ const createContentPages = async ({
           return
         }
 
+        // todo: handle resolving template components better
+        // todo: support .js, .jsx, .ts, and .tsx
+
         const contentTypeTemplatePath = !!isArchive
           ? `${templatesPath}/archive/${toCamel(archiveContentType)}.tsx`
           : `${templatesPath}/${toCamel(graphqlSingleName)}/${toCamel(
