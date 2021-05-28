@@ -11,13 +11,11 @@ const plugins = [
    */
   `gatsby-plugin-layout`,
 
-  {
-    /**
-     * ? Plugin for adding Theme UI context
-     * ? See https://theme-ui.com/packages/gatsby-plugin/
-     */
-    resolve: `gatsby-plugin-theme-ui`,
-  },
+  /**
+   * ? Plugin for adding Theme UI context
+   * ? See https://theme-ui.com/packages/gatsby-plugin/
+   */
+  `gatsby-plugin-theme-ui`,
 
   {
     /**
