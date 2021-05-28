@@ -2,69 +2,103 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-module.exports = {
-  // flags: { FAST_DEV: true, DEV_SSR: true },
-  plugins: [
-    `gatsby-plugin-layout`,
-    {
-      resolve: `gatsby-plugin-theme-ui`,
-      options: {
-        preset: "@theme-ui/preset-funk",
-      },
-    },
-    {
-      /**
-       * First up is the WordPress source plugin that connects Gatsby
-       * to your WordPress site.
-       *
-       * visit the plugin docs to learn more
-       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
-       *
-       */
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        // the only required plugin option for WordPress is the GraphQL url.
-        url: process.env.WPGRAPHQL_URL,
-      },
-    },
+const flags = { FAST_DEV: false, DEV_SSR: false }
 
+const plugins = [
+  {
     /**
-     * We need this plugin so that it adds the "File.publicURL" to our site
-     * It will allow us to access static url's for assets like PDF's
+     * ? Plugin for adding Theme UI context
+     * ? See https://theme-ui.com/packages/gatsby-plugin/
+     */
+    resolve: `gatsby-plugin-theme-ui`,
+    options: {
+      preset: "@theme-ui/presets/funk",
+    },
+  },
+
+  // ? This plugin adds a persisting layout between page changes
+  // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
+  `gatsby-plugin-layout`,
+
+  {
+    /**
+     * ? WordPress source plugin `gatsby-source-wordpress`
+     * ? This connects Gatsby to your WordPress site.
      *
-     * See https://www.gatsbyjs.org/packages/gatsby-source-filesystem/ for more info
+     * ? See https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
      */
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `assets`,
-        path: `${__dirname}/content/assets`,
+    resolve: `gatsby-source-wordpress`,
+    options: {
+      // the only required plugin option for WordPress is the GraphQL url.
+      url: process.env.WPGRAPHQL_URL,
+
+      production: {
+        hardCacheMediaFiles: true,
+      },
+
+      develop: {
+        hardCacheMediaFiles: true,
+      },
+
+      type: {
+        __all: {
+          limit: 50,
+        },
+        MediaItem: {
+          lazyNodes: false,
+          localFile: {
+            requestConcurrency: 50,
+          },
+        },
+      },
+
+      schema: {
+        perPage: 50,
+        timeout: 60000,
       },
     },
+  },
 
+  {
     /**
-     * The following two plugins are required if you want to use Gatsby image
-     * See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
-     * if you're curious about it.
+     * ? We need this plugin so that it adds the "File.publicURL" to our site
+     * ? It will allow us to access static url's for assets like PDF's
+     *
+     * ? See https://www.gatsbyjs.org/packages/gatsby-source-filesystem/ for more info
      */
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-
-    {
-      // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Gatsby Starter WordPress Blog`,
-        short_name: `GatsbyJS & WP`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
-      },
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `assets`,
+      path: `${__dirname}/content/assets`,
     },
+  },
 
-    // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
-    `gatsby-plugin-react-helmet`,
-  ],
+  /**
+   * ? The following two plugins are required for Gatsby image
+   * ? See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
+   */
+  `gatsby-transformer-sharp`,
+  `gatsby-plugin-sharp`,
+
+  {
+    // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: `Gatsby Starter WordPress Blog`,
+      short_name: `GatsbyJS & WP`,
+      start_url: `/`,
+      background_color: `#ffffff`,
+      theme_color: `#663399`,
+      display: `minimal-ui`,
+      icon: `content/assets/gatsby-icon.png`,
+    },
+  },
+
+  // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
+  `gatsby-plugin-react-helmet`,
+]
+
+module.exports = {
+  flags,
+  plugins,
 }

@@ -15,7 +15,7 @@ const Post = props => {
     <div>
       {title && <h1>{title}</h1>}
 
-      {!!content && <section>{parse(content)}</section>}
+      {/* {!!content && <section>{parse(content)}</section>} */}
     </div>
   )
 }

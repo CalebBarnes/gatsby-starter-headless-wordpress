@@ -5,7 +5,7 @@ const { toCamel } = require(`./utils/toCamel`)
 const { getContentSeo } = require(`./getContentSeo`)
 const { createArchivePages } = require(`./createArchivePages`)
 
-const createAllPages = async ({
+const createContentPages = async ({
   contentNodes,
   templatesPath,
   excludedNodeTypes,
@@ -71,4 +71,4 @@ const createAllPages = async ({
     )
   )
 
-exports.createAllPages = createAllPages
+exports.createContentPages = createContentPages

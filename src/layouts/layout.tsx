@@ -1,9 +1,17 @@
 import React from "react"
 import Header from "../components/header"
+import Seo from "../components/seo"
 
-const Layout = ({ children }) => {
+export const Layout = props => {
+  const {
+    children,
+    pageContext: { seo },
+  } = props
+
   return (
     <div>
+      <Seo {...seo} />
+
       <Header />
 
       <main>{children}</main>
@@ -12,5 +20,3 @@ const Layout = ({ children }) => {
     </div>
   )
 }
-
-export default Layout

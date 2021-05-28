@@ -1,15 +1,16 @@
 const getContentSeo = async ({ id, nodeType, graphql }) => {
-  const {
-    data: {
-      [`wp${nodeType}`]: { seo },
-    },
-  } = await graphql(
-    /* GraphQL */ `
+  try {
+    const {
+      data: { [`wp${nodeType}`]: { seo = null } } = {
+        [`wp${nodeType}`]: { seo: null },
+      },
+    } = await graphql(
+      /* GraphQL */ `
          query ContentNode($id: String!) {
            wp${nodeType}(id: { eq: $id }) {
                  seo {
-                    metaDesc
                     title
+                    metaDesc
                     canonical
                     cornerstone
                     focuskw
@@ -41,10 +42,13 @@ const getContentSeo = async ({ id, nodeType, graphql }) => {
            }
          }
       `,
-    { id }
-  )
+      { id }
+    )
 
-  return seo
+    return seo
+  } catch (err) {
+    reporter.warn(`Yoast SEO not enabled in WP`)
+  }
 }
 
 exports.getContentSeo = getContentSeo
