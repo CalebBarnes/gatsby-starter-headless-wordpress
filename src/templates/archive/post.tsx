@@ -18,7 +18,7 @@ const PostArchive = (props: any) => {
     <Edges>
       {title && <Heading as="h1">{title}</Heading>}
 
-      <ol style={{ listStyle: `none` }}>
+      <ol style={{ listStyle: `none`, margin: 0, padding: 0 }}>
         {posts &&
           posts.map((post: any) => {
             return (
