@@ -6,7 +6,7 @@ interface EdgesProps extends BoxProps {
   children?: any
 }
 
-const Edges = (props: EdgesProps) => {
+const Edges: React.FC<EdgesProps> = (props: EdgesProps) => {
   const { size, sx, ...rest } = props
 
   return (
