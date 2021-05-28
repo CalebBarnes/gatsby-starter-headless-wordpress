@@ -4,6 +4,10 @@
  * Version: 0.0.1
  */
 
+/**
+ * ? For more information on WPGraphQL resolvers
+ * ? See https://www.wpgraphql.com/docs/graphql-resolvers/
+ */
 
 // isActive on Plugin
 add_action( 'graphql_register_types', function() {
