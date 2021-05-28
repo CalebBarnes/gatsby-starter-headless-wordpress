@@ -16,8 +16,10 @@ const plugins = [
     },
   },
 
-  // ? This plugin adds a persisting layout between page changes
-  // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
+  /**
+   * ? This plugin adds a persisting layout between page changes
+   * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
+   */
   `gatsby-plugin-layout`,
 
   {
