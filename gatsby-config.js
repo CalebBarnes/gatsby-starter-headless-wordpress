@@ -2,7 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const flags = { FAST_DEV: false, DEV_SSR: false }
+const flags = { FAST_DEV: true, DEV_SSR: true }
 
 const plugins = [
   /**
