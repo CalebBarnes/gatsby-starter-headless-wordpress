@@ -1,4 +1,5 @@
 import { deep, system } from "@theme-ui/presets"
+// ? See https://theme-ui.com/packages/presets/
 
 const theme = {
   ...deep,

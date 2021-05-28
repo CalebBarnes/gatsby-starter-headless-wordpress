@@ -46,7 +46,7 @@ const Header = () => {
       </Link>
       <Flex>
         <Button onClick={toggleColorMode} sx={{ cursor: "pointer" }}>
-          {colorMode === "dark" || colorMode === "__default" ? "Light" : "Dark"}
+          {colorMode === "__default" ? "Light" : "Dark"}
         </Button>
 
         {/* <MenuButton sx={{ cursor: "pointer" }} /> */}
