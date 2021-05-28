@@ -1,26 +1,25 @@
-import { dark, system } from "@theme-ui/presets"
-
-console.log({ dark, system })
+import { deep, system } from "@theme-ui/presets"
 
 const theme = {
-  ...dark,
+  ...deep,
   styles: {
-    ...dark.styles,
+    ...deep.styles,
+    root: {
+      ...deep.styles.root,
+      a: {
+        color: "primary",
+      },
+    },
   },
   colors: {
-    ...dark.colors,
+    ...deep.colors,
     modes: {
       dark: {
-        ...dark.colors,
+        ...deep.colors,
       },
       light: {
         ...system.colors,
       },
-    },
-  },
-  sizes: {
-    container: {
-      maxWidth: 768,
     },
   },
 }
