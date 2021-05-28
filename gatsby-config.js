@@ -17,9 +17,6 @@ const plugins = [
      * ? See https://theme-ui.com/packages/gatsby-plugin/
      */
     resolve: `gatsby-plugin-theme-ui`,
-    // options: {
-    //   preset: "@theme-ui/presets/funk",
-    // },
   },
 
   {
