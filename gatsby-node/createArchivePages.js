@@ -3,7 +3,7 @@ const chunk = require("lodash/chunk")
 const { toCamel } = require("./utils/toCamel")
 
 /**
- * This function creates all the individual archive pages in this site
+ * ? This function creates all the individual archive pages in this site
  */
 async function createArchivePages({
   archiveContentType,
@@ -47,14 +47,15 @@ async function createArchivePages({
 
       const getPagePath = page => {
         if (page > 0 && page <= totalPages) {
-          // we want the first page to be the uri of the archive page and any additional pages
-          // to be numbered.
-          // "/blog/2" for example
+          // we want the first page to be the uri of the archive page. example: "/blog/"
+          // and any additional pages to be numbered. example: "/blog/2"
+
           return page === 1 ? uri : `${uri}${page}`
         }
 
         return null
       }
+
       reporter.verbose(`Creating archive page at ${getPagePath(pageNumber)}`)
 
       const hasNextPage = pageNumber < nodesChunkedIntoArchivePages.length
