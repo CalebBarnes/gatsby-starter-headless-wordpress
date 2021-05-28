@@ -4,7 +4,7 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import Seo from "../components/seo"
 
-export const Layout = props => {
+export const Layout = (props: any) => {
   const {
     children,
     pageContext: { seo },
@@ -18,7 +18,7 @@ export const Layout = props => {
 
       <main>{children}</main>
 
-      <Footer>© {new Date().getFullYear()}</Footer>
+      <Footer />
     </div>
   )
 }

@@ -2,7 +2,8 @@
     "include": [
         "./src/**/*",
         "src/components",
-        "src/custom.d.ts"
+        "src/custom.d.ts",
+
     ],
     "compilerOptions": {
         "target": "esnext",
@@ -11,7 +12,7 @@
             "dom",
             "es2017"
         ],
-        // "allowJs": true,
+        "allowJs": true,
         // "checkJs": true,
         "jsx": "react",
         "strict": true,

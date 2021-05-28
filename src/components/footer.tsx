@@ -4,7 +4,7 @@ import { Text } from "theme-ui"
 
 import Edges from "./edges"
 
-const Footer = () => {
+const Footer = (_props: any) => {
   const {
     wp: { generalSettings },
   } = useStaticQuery(graphql`
