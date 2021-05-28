@@ -14,9 +14,6 @@ const theme = {
   colors: {
     ...deep.colors,
     modes: {
-      dark: {
-        ...deep.colors,
-      },
       light: {
         ...system.colors,
       },

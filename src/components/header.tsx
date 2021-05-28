@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { useThemeUI, Heading, Flex, Button, MenuButton } from "theme-ui"
+import { useThemeUI, Heading, Flex, Button } from "theme-ui"
 
 import Edges from "./edges"
 
@@ -20,9 +20,15 @@ const Header = () => {
   const { colorMode, setColorMode } = useThemeUI()
 
   const toggleColorMode = () => {
-    colorMode === "dark" || colorMode === "__default"
-      ? setColorMode("light")
-      : setColorMode("dark")
+    if (!setColorMode || !colorMode) {
+      return
+    }
+
+    if (colorMode === "__default") {
+      setColorMode("light")
+    } else {
+      setColorMode("__default")
+    }
   }
 
   return (
