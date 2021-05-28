@@ -96,6 +96,20 @@ const plugins = [
 
   // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
   `gatsby-plugin-react-helmet`,
+
+  {
+    /**
+     * ? Adds svg-react-loader to gatsby webpack config
+     * ? Import SVGs and use them as Components
+     * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-svg/
+     */
+    resolve: "gatsby-plugin-react-svg",
+    options: {
+      rule: {
+        include: /svg/,
+      },
+    },
+  },
 ]
 
 module.exports = {
