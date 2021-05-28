@@ -62,6 +62,7 @@ const createContentPages = async ({
           })
           return
         } else {
+          reporter.verbose(`Creating ${nodeType} at ${uri}`)
           return actions.createPage({
             path: uri,
             component: path.resolve(contentTypeTemplatePath),

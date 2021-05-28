@@ -16,8 +16,6 @@ async function createArchivePages({
   reporter,
   seo,
 }) {
-  reporter.verbose(`Creating archive pages for ${uri}`)
-
   const nodes = contentNodes.filter(
     node => toCamel(node.nodeType) === toCamel(archiveContentType)
   )
@@ -57,7 +55,9 @@ async function createArchivePages({
         return null
       }
 
-      reporter.verbose(`Creating archive page at ${getPagePath(pageNumber)}`)
+      reporter.verbose(
+        `Creating ${archiveContentType} archive at ${getPagePath(pageNumber)}`
+      )
 
       const hasNextPage = pageNumber < nodesChunkedIntoArchivePages.length
       const hasPrevPage = pageNumber > 1
