@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import parse from "html-react-parser"
 
 import Edges from "../../components/edges"
+import { Heading } from "theme-ui"
 
 const Post = (props: any) => {
   const {
@@ -13,7 +14,7 @@ const Post = (props: any) => {
 
   return (
     <Edges>
-      {title && <h1>{title}</h1>}
+      {title && <Heading as="h1">{title}</Heading>}
 
       {!!content && <section>{parse(content)}</section>}
     </Edges>

@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
+import { Heading } from "theme-ui"
 
 import Edges from "../../components/edges"
 
@@ -15,7 +16,7 @@ const PostArchive = (props: any) => {
 
   return (
     <Edges>
-      {title && <h1>{title}</h1>}
+      {title && <Heading as="h1">{title}</Heading>}
 
       <ol style={{ listStyle: `none` }}>
         {posts &&

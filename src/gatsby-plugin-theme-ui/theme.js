@@ -13,6 +13,11 @@ const theme = {
       ...deep.styles.root,
       a: {
         color: "primary",
+        textDecoration: "none",
+        "&:hover": {
+          color: "secondary",
+          textDecoration: "underline",
+        },
       },
     },
   },

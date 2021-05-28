@@ -1,8 +1,9 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { Text } from "theme-ui"
+import { Text, Box } from "theme-ui"
 
 import Edges from "./edges"
+import FooterMenu from "./menus/FooterMenu"
 
 const Footer = (_props: any) => {
   const {
@@ -19,7 +20,8 @@ const Footer = (_props: any) => {
 
   return (
     <Edges
-      p="20px 0"
+      mt={80}
+      p="80px 0"
       as="footer"
       sx={{
         display: "flex",
@@ -27,6 +29,8 @@ const Footer = (_props: any) => {
         justifyContent: "space-between",
       }}
     >
+      <FooterMenu />
+
       <Link to="/">
         <Text>{generalSettings?.title}</Text>
       </Link>

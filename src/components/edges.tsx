@@ -1,10 +1,9 @@
 import React from "react"
-import { Container } from "theme-ui"
+import { Container, BoxProps } from "theme-ui"
 
-interface EdgesProps {
+interface EdgesProps extends BoxProps {
   size?: "sm" | "md" | "lg"
   children?: any
-  [x: string]: any
 }
 
 const Edges = (props: EdgesProps) => {

@@ -3,6 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import { useThemeUI, Heading, Flex, Button } from "theme-ui"
 
 import Edges from "./edges"
+import DesktopMenu from "./menus/DesktopMenu"
 
 const Header = () => {
   const {
@@ -44,7 +45,9 @@ const Header = () => {
       <Link to="/">
         <Heading>{generalSettings?.title}</Heading>
       </Link>
-      <Flex>
+
+      <Flex sx={{ alignItems: "center" }}>
+        <DesktopMenu />
         <Button onClick={toggleColorMode} sx={{ cursor: "pointer" }}>
           {colorMode === "__default" ? "Light" : "Dark"}
         </Button>
