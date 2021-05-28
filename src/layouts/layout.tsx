@@ -1,5 +1,7 @@
 import React from "react"
+
 import Header from "../components/header"
+import Footer from "../components/footer"
 import Seo from "../components/seo"
 
 export const Layout = props => {
@@ -16,7 +18,7 @@ export const Layout = props => {
 
       <main>{children}</main>
 
-      <footer>© {new Date().getFullYear()}</footer>
+      <Footer>© {new Date().getFullYear()}</Footer>
     </div>
   )
 }

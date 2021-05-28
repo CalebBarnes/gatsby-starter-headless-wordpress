@@ -5,22 +5,22 @@ require("dotenv").config({
 const flags = { FAST_DEV: false, DEV_SSR: false }
 
 const plugins = [
+  /**
+   * ? This plugin adds a persisting layout between page changes
+   * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
+   */
+  `gatsby-plugin-layout`,
+
   {
     /**
      * ? Plugin for adding Theme UI context
      * ? See https://theme-ui.com/packages/gatsby-plugin/
      */
     resolve: `gatsby-plugin-theme-ui`,
-    options: {
-      preset: "@theme-ui/presets/funk",
-    },
+    // options: {
+    //   preset: "@theme-ui/presets/funk",
+    // },
   },
-
-  /**
-   * ? This plugin adds a persisting layout between page changes
-   * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
-   */
-  `gatsby-plugin-layout`,
 
   {
     /**

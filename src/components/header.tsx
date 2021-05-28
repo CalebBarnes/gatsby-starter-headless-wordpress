@@ -1,12 +1,52 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import { useThemeUI, Heading, Flex, Button, MenuButton } from "theme-ui"
 
-const Header = () => (
-  <header>
-    <Link to="/">
-      <h4>Website Title</h4>
-    </Link>
-  </header>
-)
+import Edges from "./edges"
+
+const Header = () => {
+  const {
+    wp: { generalSettings },
+  } = useStaticQuery(graphql`
+    {
+      wp {
+        generalSettings {
+          title
+        }
+      }
+    }
+  `)
+
+  const { colorMode, setColorMode } = useThemeUI()
+
+  const toggleColorMode = () => {
+    colorMode === "dark" || colorMode === "__default"
+      ? setColorMode("light")
+      : setColorMode("dark")
+  }
+
+  return (
+    <Edges
+      p="20px 0"
+      as="header"
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <Link to="/">
+        <Heading>{generalSettings?.title}</Heading>
+      </Link>
+      <Flex>
+        <Button onClick={toggleColorMode} sx={{ cursor: "pointer" }}>
+          {colorMode === "dark" || colorMode === "__default" ? "Light" : "Dark"}
+        </Button>
+
+        {/* <MenuButton sx={{ cursor: "pointer" }} /> */}
+      </Flex>
+    </Edges>
+  )
+}
 
 export default Header

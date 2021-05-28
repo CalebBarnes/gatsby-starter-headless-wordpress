@@ -2,6 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import parse from "html-react-parser"
 
+import Edges from "../../components/edges"
+
 const Post = props => {
   const {
     data: {
@@ -9,14 +11,12 @@ const Post = props => {
     },
   } = props
 
-  // console.log({ props })
-
   return (
-    <div>
+    <Edges>
       {title && <h1>{title}</h1>}
 
-      {/* {!!content && <section>{parse(content)}</section>} */}
-    </div>
+      {!!content && <section>{parse(content)}</section>}
+    </Edges>
   )
 }
 

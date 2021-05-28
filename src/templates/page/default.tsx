@@ -1,6 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 import parse from "html-react-parser"
+import { Heading } from "theme-ui"
+
+import Edges from "../../components/edges"
 
 const Page = props => {
   const {
@@ -12,11 +15,11 @@ const Page = props => {
   // console.log({ props })
 
   return (
-    <div>
-      {title && <h1>{title}</h1>}
+    <Edges>
+      {title && <Heading>{title}</Heading>}
 
-      {/* {!!content && <section>{parse(content)}</section>} */}
-    </div>
+      {!!content && <section>{parse(content)}</section>}
+    </Edges>
   )
 }
 

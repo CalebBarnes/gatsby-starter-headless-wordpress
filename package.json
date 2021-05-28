@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "Caleb Barnes <caleb.d.barnes@gmail.com>",
   "dependencies": {
+    "@theme-ui/color": "^0.9.1",
     "@theme-ui/presets": "^0.9.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.3.0",
@@ -30,15 +31,7 @@
     "typeface-montserrat": "1.1.13"
   },
   "devDependencies": {
-    "@types/node": "^12.12.11",
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.9.4",
-    "@typescript-eslint/eslint-plugin": "^2.8.0",
-    "@typescript-eslint/parser": "^2.8.0",
     "dumper.js": "^1.3.1",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
     "prettier": "2.2.1",
     "typescript": "^3.9.7"
   },

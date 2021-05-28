@@ -2,6 +2,8 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
 
+import Edges from "../../components/edges"
+
 const PostArchive = props => {
   const {
     data: {
@@ -14,7 +16,7 @@ const PostArchive = props => {
   // console.log({ props })
 
   return (
-    <div>
+    <Edges>
       {title && <h1>{title}</h1>}
 
       <ol style={{ listStyle: `none` }}>
@@ -53,7 +55,7 @@ const PostArchive = props => {
         </>
       )}
       {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
-    </div>
+    </Edges>
   )
 }
 
