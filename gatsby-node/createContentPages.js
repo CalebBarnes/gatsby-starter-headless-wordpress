@@ -29,10 +29,10 @@ const createContentPages = async ({
         }
 
         const contentTypeTemplatePath = !!isArchive
-          ? `${templatesPath}/archive/${toCamel(archiveContentType)}.js`
+          ? `${templatesPath}/archive/${toCamel(archiveContentType)}.tsx`
           : `${templatesPath}/${toCamel(graphqlSingleName)}/${toCamel(
               templateName
-            )}.js`
+            )}.tsx`
 
         const templateExists = fs.existsSync(contentTypeTemplatePath)
 
