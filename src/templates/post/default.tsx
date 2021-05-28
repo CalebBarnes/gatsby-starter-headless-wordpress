@@ -4,7 +4,7 @@ import parse from "html-react-parser"
 
 import Edges from "../../components/edges"
 
-const Post = props => {
+const Post = (props: any) => {
   const {
     data: {
       post: { title, content },

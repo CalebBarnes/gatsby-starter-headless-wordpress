@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 
-import Parser from "html-react-parser"
+import parse from "html-react-parser"
 
 const Seo = props => {
   const { title, lang = "en", fullHead } = props
@@ -14,7 +14,7 @@ const Seo = props => {
       title={title}
       defer={false}
     >
-      {fullHead && Parser(fullHead)}
+      {fullHead && parse(fullHead)}
     </Helmet>
   )
 }

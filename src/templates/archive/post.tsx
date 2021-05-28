@@ -4,7 +4,7 @@ import parse from "html-react-parser"
 
 import Edges from "../../components/edges"
 
-const PostArchive = props => {
+const PostArchive = (props: any) => {
   const {
     data: {
       page: { title },
@@ -13,17 +13,13 @@ const PostArchive = props => {
     pageContext: { nextPagePath, previousPagePath },
   } = props
 
-  // console.log({ props })
-
   return (
     <Edges>
       {title && <h1>{title}</h1>}
 
       <ol style={{ listStyle: `none` }}>
         {posts &&
-          posts.map(post => {
-            const title = post.title
-
+          posts.map((post: any) => {
             return (
               <li key={post.uri}>
                 <article
@@ -34,13 +30,15 @@ const PostArchive = props => {
                   <header>
                     <h2>
                       <Link to={post.uri} itemProp="url">
-                        <span itemProp="headline">{parse(title)}</span>
+                        <span itemProp="headline">
+                          {post.title && parse(post.title)}
+                        </span>
                       </Link>
                     </h2>
                     <small>{post.date}</small>
                   </header>
                   <section itemProp="description">
-                    {parse(post.excerpt)}
+                    {post.excerpt && parse(post.excerpt)}
                   </section>
                 </article>
               </li>
@@ -74,7 +72,7 @@ export const pageQuery = graphql`
       skip: $offset
     ) {
       nodes {
-        excerpt
+        id
         uri
         date(formatString: "MMMM DD, YYYY")
         title
