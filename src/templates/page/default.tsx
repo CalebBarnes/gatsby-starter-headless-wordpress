@@ -5,14 +5,12 @@ import { Heading } from "theme-ui"
 
 import Edges from "../../components/edges"
 
-const Page = props => {
+const Page = (props: any) => {
   const {
     data: {
       page: { title, content },
     },
   } = props
-
-  // console.log({ props })
 
   return (
     <Edges>
