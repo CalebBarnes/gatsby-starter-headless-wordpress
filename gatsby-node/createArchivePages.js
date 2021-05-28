@@ -14,6 +14,7 @@ async function createArchivePages({
   graphql,
   actions,
   reporter,
+  seo,
 }) {
   reporter.verbose(`Creating archive pages for ${uri}`)
 
@@ -77,6 +78,8 @@ async function createArchivePages({
           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
           // etc
           offset: index * postsPerPage,
+
+          seo,
 
           // We need to tell the template how many posts to display too
           postsPerPage,

@@ -58,6 +58,7 @@ const createContentPages = async ({
             graphql,
             actions,
             reporter,
+            seo,
           })
           return
         } else {
