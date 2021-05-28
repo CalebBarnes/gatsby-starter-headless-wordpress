@@ -1,12 +1,9 @@
 {
-  "name": "gatsby-starter-wordpress-blog",
+  "name": "gatsby-starter-headless-wordpress",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A starter for a Headless WP site powered by Gatsby",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com> and Tyler Barnes <tylerdbarnes@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
+  "author": "Caleb Barnes <caleb.d.barnes@gmail.com>",
   "dependencies": {
     "@theme-ui/presets": "^0.9.0",
     "dotenv": "^10.0.0",
