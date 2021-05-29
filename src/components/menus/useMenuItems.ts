@@ -1,11 +1,11 @@
 import { graphql, useStaticQuery } from "gatsby"
 
-interface useMenuItemsParameters {
+interface UseMenuItemsProps {
   location?: string
   slug?: string
 }
 
-const useMenuItems = ({ location, slug }: useMenuItemsParameters) => {
+const useMenuItems = ({ location, slug }: UseMenuItemsProps) => {
   if (!location && !slug) {
     console.warn(`useMenuItems requires either a slug or location parameter`)
     console.warn(
