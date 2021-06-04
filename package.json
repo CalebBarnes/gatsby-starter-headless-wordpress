@@ -11,6 +11,7 @@
     "dotenv": "^10.0.0",
     "gatsby": "^3.3.0",
     "gatsby-image": "^3.3.0",
+    "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-layout": "^2.6.0",
     "gatsby-plugin-manifest": "^3.3.0",
     "gatsby-plugin-offline": "^4.3.0",

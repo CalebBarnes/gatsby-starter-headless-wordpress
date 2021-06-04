@@ -1,19 +1,29 @@
 import React from "react"
 import { graphql } from "gatsby"
 import parse from "html-react-parser"
+import { Heading, Box } from "theme-ui"
+
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Edges from "../../components/edges"
-import { Heading } from "theme-ui"
 
 const Post = (props: any) => {
   const {
     data: {
-      post: { title, content },
+      post: { title, content, featuredImage },
     },
   } = props
 
+  const image = getImage(featuredImage?.node?.localFile)
+
   return (
     <Edges>
+      {image && (
+        <Box mb={2}>
+          <GatsbyImage image={image} alt={featuredImage?.node?.altText || ""} />
+        </Box>
+      )}
+
       {title && <Heading as="h1">{title}</Heading>}
 
       {!!content && <section>{parse(content)}</section>}
@@ -28,6 +38,20 @@ export const postQuery = graphql`
     post: wpPost(id: { eq: $id }) {
       title
       content
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                height: 300
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
     }
   }
 `

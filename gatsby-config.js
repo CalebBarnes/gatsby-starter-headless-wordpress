@@ -71,11 +71,12 @@ const plugins = [
   },
 
   /**
-   * ? The following two plugins are required for Gatsby image
+   * ? The following three plugins are required for Gatsby image
    * ? See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
    */
+  `gatsby-plugin-image`,
   `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`,
+  `gatsby-plugin-sharp`, // ? Needed for dynamic images
 
   {
     // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
