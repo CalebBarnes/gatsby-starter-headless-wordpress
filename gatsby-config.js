@@ -30,17 +30,17 @@ const plugins = [
       url: process.env.WPGRAPHQL_URL,
 
       production: {
-        hardCacheMediaFiles: true,
+        hardCacheMediaFiles: true, // stores the wp media files in a .wordpress-cache folder even when clear cache
       },
 
       develop: {
-        hardCacheMediaFiles: true,
+        hardCacheMediaFiles: true, // stores the wp media files in a .wordpress-cache folder even when clear cache
       },
 
       type: {
-        __all: {
-          limit: 50,
-        },
+        // __all: {
+        //   limit: process.env.NODE_ENV === 'develop' ? 50 : null, // limit all posts to 50 in development
+        // },
         MediaItem: {
           lazyNodes: false,
           localFile: {
@@ -92,6 +92,7 @@ const plugins = [
     },
   },
 
+  // ? Adds elements to the head
   // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
   `gatsby-plugin-react-helmet`,
 
