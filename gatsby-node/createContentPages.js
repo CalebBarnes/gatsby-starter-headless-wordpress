@@ -24,7 +24,10 @@ const createContentPages = async ({
         return
       }
 
-      const contentTypeTemplatePath = await getTemplatePath(contentNode)
+      const contentTypeTemplatePath = await getTemplatePath({
+        node: contentNode,
+        reporter,
+      })
 
       const seo = await getContentSeo({ id, nodeType, graphql })
 

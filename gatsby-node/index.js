@@ -1,6 +1,7 @@
-const { getContentNodes } = require(`./getContentNodes.js`)
-const { createContentPages } = require(`./createContentPages.js`)
-// const { getTaxonomies } = require(`./getTaxonomies.js`)
+const { getContentNodes } = require(`./getContentNodes`)
+const { createContentPages } = require(`./createContentPages`)
+const { getTaxonomies } = require(`./getTaxonomies`)
+const { createTaxonomyPages } = require(`./createTaxonomyPages`)
 
 exports.createPages = async gatsbyUtilities => {
   const contentNodes = await getContentNodes(gatsbyUtilities)
@@ -12,7 +13,12 @@ exports.createPages = async gatsbyUtilities => {
     })
   }
 
-  // const taxonomies = await getTaxonomies(gatsbyUtilities)
+  const taxonomies = await getTaxonomies(gatsbyUtilities)
 
-  // dd(taxonomies)
+  if (taxonomies.length >= 1) {
+    await createTaxonomyPages({
+      taxonomies,
+      gatsbyUtilities,
+    })
+  }
 }

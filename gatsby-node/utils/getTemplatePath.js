@@ -3,15 +3,21 @@ const { toCamel } = require(`./toCamel`)
 
 const { options } = require(`../options`)
 
-const getTemplatePath = async contentNode => {
+const getTemplatePath = async ({ node, reporter }) => {
   const {
-    template: { templateName },
+    uri,
+    archivePath,
+    nodeType,
+    template,
     isArchive = false,
     archiveContentType = null,
-    contentType: {
-      node: { graphqlSingleName },
-    },
-  } = contentNode
+    contentType = { node: { graphqlSingleName: null } },
+  } = node
+  const { templateName } = template || {}
+
+  const {
+    node: { graphqlSingleName },
+  } = contentType
 
   let contentTypeTemplatePath = `${options.templatesPath}/${toCamel(
     graphqlSingleName
@@ -27,9 +33,11 @@ const getTemplatePath = async contentNode => {
 
   if (!templateExists) {
     reporter.warn(
-      `Template "${templateName}" not found at "${contentTypeTemplatePath}" for node type "${nodeType}" on uri "${uri}"`
+      `Template "${templateName}" not found at "${contentTypeTemplatePath}" for node type "${nodeType}" on uri "${
+        uri || archivePath
+      }"`
     )
-    return
+    return null
   }
 
   return contentTypeTemplatePath
