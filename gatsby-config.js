@@ -2,17 +2,17 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const flags = { FAST_DEV: true, DEV_SSR: true }
+const flags = { FAST_DEV: true, DEV_SSR: true, PRESERVE_WEBPACK_CACHE: true }
 
 const plugins = [
   /**
-   * ? This plugin adds a persisting layout between page changes
+   * ? This plugin adds a persisting layout between page changes ~ ./src/layouts
    * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
    */
   `gatsby-plugin-layout`,
 
   /**
-   * ? Plugin for adding Theme UI context
+   * ? Plugin for adding Theme UI context ~ ./src/gatsby-plugin-theme-ui
    * ? See https://theme-ui.com/packages/gatsby-plugin/
    */
   `gatsby-plugin-theme-ui`,
@@ -30,17 +30,17 @@ const plugins = [
       url: process.env.WPGRAPHQL_URL,
 
       production: {
-        hardCacheMediaFiles: true, // stores the wp media files in a .wordpress-cache folder even when clear cache
+        hardCacheMediaFiles: true, // stores the wp media files in a .wordpress-cache folder
       },
 
       develop: {
-        hardCacheMediaFiles: true, // stores the wp media files in a .wordpress-cache folder even when clear cache
+        hardCacheMediaFiles: true, // stores the wp media files in a .wordpress-cache folder
       },
 
       type: {
-        // __all: {
-        //   limit: process.env.NODE_ENV === 'develop' ? 50 : null, // limit all posts to 50 in development
-        // },
+        __all: {
+          limit: process.env.NODE_ENV === "development" ? 50 : null, // limit all posts to 50 in development
+        },
         MediaItem: {
           lazyNodes: false,
           localFile: {
@@ -79,7 +79,7 @@ const plugins = [
   `gatsby-plugin-sharp`, // ? Needed for dynamic images
 
   {
-    // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
+    // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest
     resolve: `gatsby-plugin-manifest`,
     options: {
       name: `Gatsby Starter WordPress Blog`,
@@ -92,8 +92,11 @@ const plugins = [
     },
   },
 
-  // ? Adds elements to the head
-  // ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
+  /**
+   * ? Provides drop-in support for server rendering data added with React Helmet.
+   * ? React Helmet is a component which lets you control your document head using their React component.
+   * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet
+   */
   `gatsby-plugin-react-helmet`,
 
   {
@@ -110,6 +113,17 @@ const plugins = [
     },
   },
 ]
+
+if (process.env.WEBPACK_BUNDLE_ANALYSER) {
+  /**
+   * ? Gatsby plugin with the latest version of webpack-bundle-analyser to
+   * ? visualize size of output files with an interactive zoomable treemap.
+   *
+   * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-webpack-bundle-analyser-v2/
+   */
+
+  plugins.push(`gatsby-plugin-webpack-bundle-analyser-v2`)
+}
 
 module.exports = {
   flags,

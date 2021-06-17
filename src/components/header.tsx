@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { useThemeUI, Heading, Flex, Button } from "theme-ui"
+import Headroom from "react-headroom"
 
 import Edges from "./edges"
 import DesktopMenu from "./menus/DesktopMenu"
@@ -33,28 +34,35 @@ const Header = () => {
   }
 
   return (
-    <Edges
-      p="20px 0"
-      as="header"
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+    <Headroom
+      style={{
+        backgroundColor: "white",
+        boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.5)",
       }}
     >
-      <Link to="/">
-        <Heading>{generalSettings?.title}</Heading>
-      </Link>
+      <Edges
+        p="20px 0"
+        as="header"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Link to="/">
+          <Heading>{generalSettings?.title}</Heading>
+        </Link>
 
-      <Flex sx={{ alignItems: "center" }}>
-        <DesktopMenu />
-        <Button onClick={toggleColorMode} sx={{ cursor: "pointer" }}>
-          {colorMode === "__default" ? "Light" : "Dark"}
-        </Button>
+        <Flex sx={{ alignItems: "center" }}>
+          <DesktopMenu />
+          <Button onClick={toggleColorMode} sx={{ cursor: "pointer" }}>
+            {colorMode === "__default" ? "Light" : "Dark"}
+          </Button>
 
-        {/* <MenuButton sx={{ cursor: "pointer" }} /> */}
-      </Flex>
-    </Edges>
+          {/* <MenuButton sx={{ cursor: "pointer" }} /> */}
+        </Flex>
+      </Edges>
+    </Headroom>
   )
 }
 

@@ -1,4 +1,5 @@
 const fs = require("fs")
+const path = require("path")
 
 const { createTermPages } = require(`./createTermPages`)
 const { getTermNodes } = require(`./getTermNodes`)
@@ -22,7 +23,7 @@ const createTaxonomyPages = async ({ taxonomies, gatsbyUtilities }) => {
       if (termNodes && termNodes.length >= 1) {
         return Promise.all(
           termNodes.map(async termNode => {
-            const contentTypeTemplatePath = `${options.templatesPath}/taxonomy/${graphqlSingleName}/${termNode.slug}.tsx`
+            const contentTypeTemplatePath = `${options.templatesPath}/taxonomy/${graphqlSingleName}.tsx`
 
             const templateExists = fs.existsSync(contentTypeTemplatePath)
 
