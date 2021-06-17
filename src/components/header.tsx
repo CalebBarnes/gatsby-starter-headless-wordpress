@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { useThemeUI, Heading, Flex, Button } from "theme-ui"
+import { useThemeUI, Heading, Flex, IconButton, MenuButton } from "theme-ui"
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
 import Edges from "./edges"
 import DesktopMenu from "./menus/DesktopMenu"
@@ -48,11 +49,12 @@ const Header = () => {
 
       <Flex sx={{ alignItems: "center" }}>
         <DesktopMenu />
-        <Button onClick={toggleColorMode} sx={{ cursor: "pointer" }}>
-          {colorMode === "__default" ? "Light" : "Dark"}
-        </Button>
+        <IconButton onClick={toggleColorMode} sx={{ cursor: "pointer", color: "primary" }}>
+          {colorMode === "light" ? <MoonIcon color="inherit"/> : <SunIcon color="inherit"/>}
+        </IconButton>
 
-        {/* <MenuButton sx={{ cursor: "pointer" }} /> */}
+
+        <MenuButton sx={{ cursor: "pointer" }}  />
       </Flex>
     </Edges>
   )
