@@ -1,20 +1,33 @@
-async function getContentNodes({ graphql, reporter }) {
+async function getTaxonomies({ graphql, reporter }) {
   const graphqlResult = await graphql(/* GraphQL */ `
-    query WpContentNodes {
-      allWpContentNode {
+    query WpTaxonomies {
+      allWpTaxonomy(filter: { graphqlSingleName: { ne: "postFormat" } }) {
         nodes {
           __typename
-          id
-          uri
           nodeType
-          isArchive # added resolver for this to ContentNode - true/false
-          archiveContentType # added resolver for this to ContentNode - null or the post type "post", "product", "movie", etc
-          template {
-            templateName
-          }
-          contentType {
-            node {
+          id
+          archivePath
+          graphqlSingleName
+          connectedContentTypes {
+            nodes {
               graphqlSingleName
+              contentNodes {
+                nodes {
+                  id
+                  uri
+                  nodeType
+                  isArchive
+                  archiveContentType
+                  template {
+                    templateName
+                  }
+                  contentType {
+                    node {
+                      graphqlSingleName
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -24,12 +37,15 @@ async function getContentNodes({ graphql, reporter }) {
 
   if (graphqlResult.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your site content`,
+      `There was an error loading your site taxonomies`,
       graphqlResult.errors
     )
     return
   }
-  return graphqlResult.data.allWpContentNode.nodes
+
+  const taxonomies = graphqlResult.data.allWpTaxonomy.nodes
+
+  return taxonomies
 }
 
-exports.getContentNodes = getContentNodes
+exports.getTaxonomies = getTaxonomies

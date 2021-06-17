@@ -21,10 +21,17 @@ const createContentPages = async ({
       } = contentNode
 
       if (options.excludedNodeTypes.includes(nodeType)) {
-        return
+        return // early exit for excluded nodeType
       }
 
-      const contentTypeTemplatePath = await getTemplatePath(contentNode)
+      const contentTypeTemplatePath = await getTemplatePath({
+        node: contentNode,
+        reporter,
+      })
+
+      if (!contentTypeTemplatePath) {
+        return // no template found, exit
+      }
 
       const seo = await getContentSeo({ id, nodeType, graphql })
 
@@ -44,6 +51,7 @@ const createContentPages = async ({
       } else {
         reporter.verbose(`Creating ${nodeType} at ${uri}`)
 
+        // create single page
         return actions.createPage({
           path: uri,
           component: path.resolve(contentTypeTemplatePath),
