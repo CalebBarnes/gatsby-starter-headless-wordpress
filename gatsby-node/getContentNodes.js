@@ -3,6 +3,7 @@ async function getContentNodes({ graphql, reporter }) {
     query WpContentNodes {
       allWpContentNode {
         nodes {
+          __typename
           id
           uri
           nodeType

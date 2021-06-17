@@ -7,6 +7,7 @@ async function getTermNodes({
       query WpTaxonomies($nodeType: String!) {
         allWpTermNode(filter: { nodeType: { eq: $nodeType } }) {
           nodes {
+            __typename
             name
             nodeType
             id

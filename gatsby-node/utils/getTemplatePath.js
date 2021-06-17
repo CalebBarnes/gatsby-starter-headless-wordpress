@@ -29,7 +29,7 @@ const getTemplatePath = async ({ node, reporter }) => {
     )}.tsx`
   }
 
-  const templateExists = fs.existsSync(contentTypeTemplatePath)
+  const templateExists = fs.existsSync(contentTypeTemplatePath) // check if template exists
 
   if (!templateExists) {
     reporter.warn(

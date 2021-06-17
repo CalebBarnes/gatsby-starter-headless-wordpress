@@ -1,6 +1,6 @@
 const { getContentNodes } = require(`./getContentNodes`)
-const { createContentPages } = require(`./createContentPages`)
 const { getTaxonomies } = require(`./getTaxonomies`)
+const { createContentPages } = require(`./createContentPages`)
 const { createTaxonomyPages } = require(`./createTaxonomyPages`)
 
 exports.createPages = async gatsbyUtilities => {

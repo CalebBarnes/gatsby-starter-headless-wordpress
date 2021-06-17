@@ -3,6 +3,7 @@ async function getTaxonomies({ graphql, reporter }) {
     query WpTaxonomies {
       allWpTaxonomy(filter: { graphqlSingleName: { ne: "postFormat" } }) {
         nodes {
+          __typename
           nodeType
           id
           archivePath
