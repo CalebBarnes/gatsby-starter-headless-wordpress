@@ -11,6 +11,7 @@
     "@theme-ui/presets": "^0.9.1",
     "@theme-ui/style-guide": "^0.9.1",
     "dotenv": "^10.0.0",
+    "framer-motion": "^4.1.17",
     "gatsby": "^3.3.0",
     "gatsby-image": "^3.3.0",
     "gatsby-plugin-image": "^1.6.0",

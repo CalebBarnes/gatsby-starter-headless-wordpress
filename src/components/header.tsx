@@ -1,8 +1,15 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { useThemeUI, Heading, Flex, IconButton, MenuButton } from "theme-ui"
+import {
+  useThemeUI,
+  Heading,
+  Flex,
+  IconButton,
+  MenuButton,
+  Container,
+} from "theme-ui"
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
-import Headroom from 'react-headroom'
+import Headroom from "react-headroom"
 
 import Edges from "./edges"
 import DesktopMenu from "./menus/DesktopMenu"
@@ -35,33 +42,50 @@ const Header = () => {
   }
 
   return (
-    <Headroom
-      style={{
-        backgroundColor: "white",
-        boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.5)",
-      }}
-    >
-      <Edges>
-        <Link to="/">
-          <Heading>{generalSettings?.title}</Heading>
-        </Link>
-
-        <Flex sx={{ alignItems: "center" }}>
-          <DesktopMenu />
-          <IconButton
-            onClick={toggleColorMode}
-            sx={{ cursor: "pointer", color: "primary" }}
+    <Headroom>
+      <Container
+        sx={{
+          boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.5)",
+          bg: "background",
+          py: 1,
+        }}
+      >
+        <Edges>
+          <Flex
+            sx={{
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
           >
-            {colorMode === "light" ? (
-              <MoonIcon color="inherit" />
-            ) : (
-              <SunIcon color="inherit" />
-            )}
-          </IconButton>
+            <Link to="/">
+              <Heading>{generalSettings?.title}</Heading>
+            </Link>
 
-          <MenuButton sx={{ cursor: "pointer" }} />
-        </Flex>
-      </Edges>
+            <Flex sx={{ alignItems: "center" }}>
+              <DesktopMenu />
+
+              <IconButton
+                onClick={toggleColorMode}
+                ml={2}
+                sx={{
+                  cursor: "pointer",
+                  color: "primary",
+                  width: "32px",
+                  height: "32px",
+                }}
+              >
+                {colorMode === "light" ? (
+                  <MoonIcon color="inherit" />
+                ) : (
+                  <SunIcon color="inherit" />
+                )}
+              </IconButton>
+
+              <MenuButton ml={2} sx={{ cursor: "pointer" }} />
+            </Flex>
+          </Flex>
+        </Edges>
+      </Container>
     </Headroom>
   )
 }
