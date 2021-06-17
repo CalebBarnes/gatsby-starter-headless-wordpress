@@ -5,6 +5,8 @@
   "version": "1.0.0",
   "author": "Caleb Barnes <caleb.d.barnes@gmail.com>",
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.13",
+    "@chakra-ui/system": "^1.6.7",
     "@theme-ui/color": "^0.9.1",
     "@theme-ui/presets": "^0.9.1",
     "@theme-ui/style-guide": "^0.9.1",
