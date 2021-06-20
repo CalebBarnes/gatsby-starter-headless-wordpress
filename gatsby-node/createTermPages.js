@@ -10,7 +10,13 @@ async function createTermPages({
   uri,
   gatsbyUtilities,
 }) {
-  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
+  const {
+    data: {
+      wp: {
+        readingSettings: { postsPerPage },
+      },
+    },
+  } = await gatsbyUtilities.graphql(/* GraphQL */ `
     {
       wp {
         readingSettings {
@@ -20,13 +26,17 @@ async function createTermPages({
     }
   `)
 
-  const nodes = await gatsbyUtilities.graphql(
+  const {
+    data: {
+      allWpTaxonomy: { taxonomyNodes },
+    },
+  } = await gatsbyUtilities.graphql(
     /* GraphQL */ `
       query TaxPages($graphqlSingleName: String!) {
         allWpTaxonomy(
           filter: { graphqlSingleName: { eq: $graphqlSingleName } }
         ) {
-          nodes {
+          taxonomyNodes: nodes {
             graphqlSingleName
             archivePath
             connectedContentTypes {
@@ -47,7 +57,11 @@ async function createTermPages({
     { graphqlSingleName }
   )
 
-  const { postsPerPage } = graphqlResult.data.wp.readingSettings
+  const nodes =
+    taxonomyNodes &&
+    taxonomyNodes[0] &&
+    taxonomyNodes[0].connectedContentTypes &&
+    taxonomyNodes[0].connectedContentTypes.nodes
 
   const nodesChunkedIntoArchivePages = chunk(nodes, postsPerPage)
 
@@ -72,7 +86,7 @@ async function createTermPages({
         return null
       }
 
-      reporter.verbose(
+      gatsbyUtilities.reporter.verbose(
         `Creating ${graphqlSingleName} archive page at ${getPagePath(
           pageNumber
         )}`
@@ -83,7 +97,7 @@ async function createTermPages({
 
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      await actions.createPage({
+      await gatsbyUtilities.actions.createPage({
         path: getPagePath(pageNumber),
 
         // use the archive template passed as the page component
