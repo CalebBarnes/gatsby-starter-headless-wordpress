@@ -7,11 +7,3 @@
 </h1>
 
 Kick off your WordPress Gatsby project with this boilerplate. This starter ships with a gatsby-node that creates pages for all of your Wordpress content.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-wordpress-blog)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-wordpress-blog)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
