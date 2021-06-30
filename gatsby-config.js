@@ -5,6 +5,13 @@ require("dotenv").config({
 const flags = { FAST_DEV: true, DEV_SSR: true, PRESERVE_WEBPACK_CACHE: true }
 
 const plugins = [
+  {
+    resolve: `gatsby-theme-headless-wordpress`,
+    options: {
+      templatesPath: `./src/templates`, // default
+      excludedNodeTypes: [`MediaItem`], // default ~ excludes creating pages for individual media items
+    },
+  },
   /**
    * ? This plugin adds a persisting layout between page changes ~ ./src/layouts
    * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/
