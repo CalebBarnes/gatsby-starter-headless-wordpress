@@ -13,6 +13,7 @@ import Headroom from "react-headroom"
 
 import Edges from "./edges"
 import DesktopMenu from "./menus/DesktopMenu"
+import LanguageSwitcher from "./polylang/LanguageSwitcher"
 
 const Header = () => {
   const {
@@ -82,6 +83,7 @@ const Header = () => {
               </IconButton>
 
               <MenuButton ml={2} sx={{ cursor: "pointer" }} />
+              {/* <LanguageSwitcher/> */}
             </Flex>
           </Flex>
         </Edges>
