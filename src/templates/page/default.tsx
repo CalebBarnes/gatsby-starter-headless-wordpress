@@ -14,6 +14,7 @@ const Page = (props: any) => {
 
   return (
     <Edges>
+      <Heading>default</Heading>
       {title && <Heading as="h1">{title}</Heading>}
 
       {!!content && <section>{parse(content)}</section>}

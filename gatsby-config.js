@@ -2,16 +2,15 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const flags = { FAST_DEV: true, DEV_SSR: true, PRESERVE_WEBPACK_CACHE: true }
+const flags = { FAST_DEV: false, DEV_SSR: false }
 
 const plugins = [
-  {
-    resolve: `gatsby-theme-headless-wordpress`,
-    options: {
-      templatesPath: `./src/templates`, // default
-      excludedNodeTypes: [`MediaItem`], // default ~ excludes creating pages for individual media items
-    },
-  },
+  /**
+   * ? Creates all WP pages in this project
+   * ? See https://github.com/CalebBarnes/gatsby-theme-headless-wordpress
+   */
+  `gatsby-theme-headless-wordpress`,
+
   /**
    * ? This plugin adds a persisting layout between page changes ~ ./src/layouts
    * ? See https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/

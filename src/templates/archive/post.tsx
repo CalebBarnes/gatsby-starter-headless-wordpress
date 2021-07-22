@@ -17,6 +17,8 @@ const PostArchive = (props: any) => {
 
   return (
     <Edges>
+      <Heading>post archive</Heading>
+
       {title && <Heading as="h1">{title}</Heading>}
 
       <ol style={{ listStyle: `none`, margin: 0, padding: 0 }}>
