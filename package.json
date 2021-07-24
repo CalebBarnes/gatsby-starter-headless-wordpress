@@ -43,7 +43,7 @@
     "prettier": "2.2.1",
     "typescript": "^3.9.7"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/CalebBarnes/gatsby-starter-headless-wordpress#readme",
   "keywords": [
     "gatsby"
   ],
@@ -51,7 +51,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/CalebBarnes/gatsby-starter-headless-wordpress.git"
   },
   "scripts": {
     "build": "gatsby build",
