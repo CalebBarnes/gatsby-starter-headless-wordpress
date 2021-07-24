@@ -6,7 +6,7 @@
   Gatsby headless WordPress starter
 </h1>
 
-Kick off your WordPress Gatsby project with this boilerplate. This starter ships with a gatsby-node that creates pages for all of your Wordpress content.
+Kick off your WordPress Gatsby project with this boilerplate. This starter ships with [gatsby-theme-headless-wordpress](https://github.com/CalebBarnes/gatsby-theme-headless-wordpress), a plugin that creates pages for all of your WordPress content.
 
 ## 🚀 Quick start
 
