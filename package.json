@@ -43,6 +43,9 @@
     "prettier": "2.2.1",
     "typescript": "^3.9.7"
   },
+  "bugs": {
+    "url": "https://github.com/CalebBarnes/gatsby-theme-headless-wordpress/issues"
+  },
   "homepage": "https://github.com/CalebBarnes/gatsby-starter-headless-wordpress#readme",
   "keywords": [
     "gatsby"
